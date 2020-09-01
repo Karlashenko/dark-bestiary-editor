@@ -1,0 +1,182 @@
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap-select/sass/bootstrap-select.scss";
+@import "~jqtree/jqtree.scss";
+@import "~jquery-highlighttextarea/jquery.highlighttextarea.min.css";
+@import "dropdown";
+@import "icons";
+@import "talents";
+
+* {
+  -ms-overflow-style: none !important;
+}
+
+body {
+  background-color: #fcfcfc;
+  padding-bottom: 20px;
+}
+
+#formula mark {
+  font-weight: bold;
+  color: blue;
+}
+
+.list-info {
+  font-size: 12px;
+  color: #555;
+  text-transform: uppercase;
+  font-family: monospace;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.table-cell {
+  display: table-cell !important;
+}
+
+.sort {
+  cursor: pointer;
+  user-select: none;
+}
+
+.panel-tabs {
+  border-top: none;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+}
+
+.sort.inactive .glyphicon {
+  opacity: 0.33;
+}
+
+ul.jqtree-tree .jqtree-title {
+  margin: 0;
+}
+
+ul.jqtree-tree ul.jqtree_common {
+  margin-left: 48px;
+}
+
+ul.jqtree-tree {
+  font-family: monospace;
+}
+
+ul.jqtree-tree .jqtree-toggler.jqtree-toggler-left {
+  margin-left: -15px;
+}
+
+li.jqtree-selected > .jqtree-element,
+li.jqtree-selected > .jqtree-element:hover {
+  background: none !important;
+  background-color: #eeeeee !important;
+  text-shadow: none !important;
+}
+
+ul.jqtree-tree {
+  li.jqtree-ghost {
+    span.jqtree-circle {
+      border: solid 2px #245872 !important;
+    }
+
+    span.jqtree-line {
+      background-color: #245872 !important;
+    }
+  }
+
+  span.jqtree-border {
+    border: solid 2px #245872 !important;
+  }
+
+  .jqtree-moving > .jqtree-element .jqtree-title {
+    outline: dashed 1px #245872 !important;
+  }
+}
+
+select[multiple] .bootstrap-select a.selected {
+  color: #fff;
+  text-decoration: none;
+  outline: 0;
+  background-color: #337ab7;
+}
+
+* {
+  outline: none !important;
+}
+
+table.table-inner {
+  border-collapse: separate;
+  border-spacing: 0.5em;
+  table-layout: auto;
+  width: 100%;
+}
+
+table.table-inner td {
+  white-space: nowrap;
+}
+
+.object-list-item {
+  cursor: pointer;
+  border: none;
+}
+
+.object-list-item:hover {
+  background-color: #eee;
+}
+
+.object-list-item:active {
+  background-color: #ddd;
+}
+
+.object-list-item.selected {
+  background-color: #0099cc;
+  color: #fff;
+}
+
+.form-table {
+  width: 100% !important;
+  border-collapse: separate;
+  border-spacing: 0.5em;
+}
+
+.form-table > tr > td:first-child {
+  width: 15%;
+  vertical-align: top;
+  padding-top: 8px;
+}
+
+.form-table > tr {
+  vertical-align: middle;
+  padding-bottom: 1em;
+}
+
+.form-table th {
+  text-align: center;
+}
+
+.form-table .form-group {
+  margin: 0;
+}
+
+.btn-wide {
+  width: 150px;
+}
+
+.loading {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 20%;
+  margin: auto;
+  position: absolute;
+  background-image: url(/img/loading.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 10%;
+}
+
+textarea {
+  min-width: 100%;
+  min-height: 200px;
+  resize: vertical;
+}
