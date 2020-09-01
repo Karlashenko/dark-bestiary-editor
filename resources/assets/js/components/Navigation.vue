@@ -175,6 +175,7 @@
                 <li>
                     <router-link to="/environments">Environments</router-link>
                 </li>
+
                 <li>
                     <router-link to="/weather">Weather</router-link>
                 </li>
@@ -195,5 +196,7 @@
         <router-link tag="a" class="btn btn-default" to="/food">Food</router-link>
         <router-link tag="a" class="btn btn-default" to="/ai">AI</router-link>
         <router-link tag="a" class="btn btn-default" to="/i18n">I18N</router-link>
+
+        <a href="/download" class="btn btn-default">Download (run 'php artisan data:zip' first)</a>
     </div>
 </template>

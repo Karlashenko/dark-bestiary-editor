@@ -46,7 +46,7 @@ use App\Http\Controllers\Frontend\ValidatorsController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\Frontend\WeatherController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\DownloadController;
 use Miroc\LaravelAdminer\AdminerAutologinController;
 
 Route::any('/adminer', AdminerAutologinController::class . '@index');
@@ -55,8 +55,7 @@ Route::get('/', IndexController::class . '@index');
 Route::get('/test', IndexController::class . '@test');
 Route::get('/translation', IndexController::class . '@translation');
 
-Route::get('/analytics', AnalyticsController::class . '@index');
-Route::post('/analytics', AnalyticsController::class . '@store');
+Route::get('/download', DownloadController::class . '@index');
 
 Route::get('/import', IndexController::class . '@importIndex');
 Route::post('/import', IndexController::class . '@importStore');
