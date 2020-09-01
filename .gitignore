@@ -6,7 +6,6 @@
 /.idea
 /.vagrant
 /.DS_Store
-/public/resources
 Homestead.json
 Homestead.yaml
 composer.phar
