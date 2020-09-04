@@ -75,7 +75,8 @@ class I18N extends Model implements Presentable
     public function present(): array
     {
         return [
-            'Id'        => $this->key,
+            'Id'        => $this->id,
+            'Key'       => $this->key,
             'Variables' => $this->variables->present(),
         ];
     }
