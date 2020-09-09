@@ -41,10 +41,14 @@ class CreateDataZip extends Command
             $fileName = str_replace('api/', '', $route->uri) . '.json';
             $fileContents = file_get_contents('http://127.0.0.1:8000/' . $route->uri);
 
+            if (strpos($fileName, 'i18n/') === false) {
+                $fileName = 'data/' . $fileName;
+            }
+
             $this->info($fileName);
 
-            if (!File::isDirectory(public_path('data'))) {
-                File::makeDirectory(public_path('data'));
+            if (!File::isDirectory(public_path('data/data'))) {
+                File::makeDirectory(public_path('data/data'));
             }
 
             if (!File::isDirectory(public_path('data/i18n'))) {
