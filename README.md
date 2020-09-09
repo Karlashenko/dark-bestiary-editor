@@ -11,5 +11,4 @@ Data editor for Dark Bestiary.
 * Edit stuff
 * run 'php artisan data:zip'
 * Press Download
-* Replace files in game directory
-* Profit
+* Move files into {GameDirectory}/StreamingAssets/mods/{YourModName}
