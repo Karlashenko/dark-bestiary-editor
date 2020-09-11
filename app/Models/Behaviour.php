@@ -672,7 +672,7 @@ class Behaviour extends Model implements Presentable
         }
 
         if ($this->type === self::TYPE_STATUS_EFFECT_DAMAGE_BEHAVIOUR) {
-            $presentation['DamageStatusFlags'] = (float) $this->damage_status_flags;
+            $presentation['DamageStatusFlags'] = \implode(', ', $this->damage_status_flags ?: ['None']);
             $presentation['Amount'] = (float) $this->damage_amount;
         }
 
