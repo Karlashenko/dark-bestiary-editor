@@ -203,7 +203,7 @@ class Behaviour extends Model implements Presentable
             $behaviour->period = (int) $request->period;
             $behaviour->duration = (int) $request->duration;
             $behaviour->caster_is_bearer = (bool) $request->caster_is_bearer;
-            $behaviour->stack_count_max = min(1, (int) $request->stack_count_max);
+            $behaviour->stack_count_max = max(1, (int) $request->stack_count_max);
             $behaviour->change_model = (string) $request->change_model;
             $behaviour->initial_effect_id = $request->initial_effect_id;
             $behaviour->periodic_effect_id = $request->periodic_effect_id;

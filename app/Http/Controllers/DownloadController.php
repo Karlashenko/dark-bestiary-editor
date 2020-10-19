@@ -10,8 +10,7 @@ use Illuminate\Routing\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class AnalyticsController
- *
+ * Class DownloadController
  * @package App\Http\Controllers
  */
 class DownloadController extends Controller
