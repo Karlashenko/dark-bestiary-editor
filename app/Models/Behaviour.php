@@ -137,8 +137,10 @@ class Behaviour extends Model implements Presentable
         'MonsterModifier',
         'MonsterAffix',
         'EpisodeAffix',
+        'ItemAffix',
         'Food',
         'Ascension',
+        'Unique',
     ];
 
     public const RE_APPLY_FLAGS = [
@@ -192,6 +194,7 @@ class Behaviour extends Model implements Presentable
             $behaviour->suffix = (string) $request->suffix;
             $behaviour->name_i18n_id = $request->name_i18n_id;
             $behaviour->description_i18n_id = $request->description_i18n_id;
+            $behaviour->rarity_id = $request->rarity_id;
             $behaviour->icon = (string) $request->icon;
             $behaviour->flags = (array) $request->flags;
             $behaviour->re_apply_flags = (array) $request->re_apply_flags;
@@ -200,7 +203,7 @@ class Behaviour extends Model implements Presentable
             $behaviour->period = (int) $request->period;
             $behaviour->duration = (int) $request->duration;
             $behaviour->caster_is_bearer = (bool) $request->caster_is_bearer;
-            $behaviour->stack_count_max = (int) $request->stack_count_max;
+            $behaviour->stack_count_max = min(1, (int) $request->stack_count_max);
             $behaviour->change_model = (string) $request->change_model;
             $behaviour->initial_effect_id = $request->initial_effect_id;
             $behaviour->periodic_effect_id = $request->periodic_effect_id;
@@ -338,6 +341,12 @@ class Behaviour extends Model implements Presentable
                 $validatorPurpose = (string) \array_get($data, 'pivot.validator_purpose');
                 $behaviour->validators()->attach($validatorId, ['validator_purpose' => $validatorPurpose]);
             }
+
+            $behaviour->itemCategories()->sync([]);
+
+            foreach ((array) $request->get('item_categories', []) as $data) {
+                $behaviour->itemCategories()->attach((int) \array_get($data, 'pivot.item_category_id'));
+            }
         });
 
         $behaviour->load($behaviour->with);
@@ -359,6 +368,7 @@ class Behaviour extends Model implements Presentable
             'descriptionI18n',
             'attributeModifiers',
             'propertyModifiers',
+            'itemCategories',
             'attachments',
             'behaviours',
             'validators',
@@ -449,6 +459,16 @@ class Behaviour extends Model implements Presentable
     }
 
     /**
+     * @return BelongsToMany
+     */
+    public function itemCategories(): BelongsToMany
+    {
+        return $this->belongsToMany(ItemCategory::class, 'behaviours_item_categories')
+                    ->withPivot(['id'])
+                    ->orderBy('pivot_id');
+    }
+
+    /**
      * @return array
      */
     public function present(): array
@@ -459,6 +479,7 @@ class Behaviour extends Model implements Presentable
             'Label'             => $this->label,
             'NameKey'           => $this->nameI18n->key,
             'DescriptionKey'    => $this->descriptionI18n->key,
+            'RarityId'          => (int) $this->rarity_id,
             'Icon'              => $this->icon,
             'Tint'              => (string) $this->tint,
             'Scale'             => (float) $this->scale,
@@ -474,6 +495,7 @@ class Behaviour extends Model implements Presentable
             'OnRemoveEffectId'  => (int) $this->on_remove_effect_id,
             'Attachments'       => $this->attachments->present(),
             'EventSubject'      => (string) $this->on_event_subject ?: 'Me',
+            'ItemCategories'    => $this->itemCategories->map(function (ItemCategory $itemCategory) {return $itemCategory->id;})->toArray(),
             'Validators'        => $this->validators->map(function (Validator $validator) {
                 return [
                     'ValidatorId'      => $validator->id,

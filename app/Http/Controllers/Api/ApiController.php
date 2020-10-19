@@ -43,6 +43,7 @@ use App\Models\TalentCell;
 use App\Models\Unit;
 use App\Models\UnitGroup;
 use App\Models\Validator;
+use App\Models\Vision;
 use Illuminate\Routing\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -344,6 +345,14 @@ class ApiController extends Controller
     public function dialogues(): Response
     {
         return $this->response(Dialogue::orderBy('label')->get()->present()->toArray());
+    }
+
+    /**
+     * @return Response
+     */
+    public function visions(): Response
+    {
+        return $this->response(Vision::orderBy('id')->get()->present()->toArray());
     }
 
     /**

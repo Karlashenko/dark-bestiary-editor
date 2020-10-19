@@ -44,9 +44,10 @@ use App\Http\Controllers\Frontend\UnitsController;
 use App\Http\Controllers\Frontend\AttributesController;
 use App\Http\Controllers\Frontend\ValidatorsController;
 use App\Http\Controllers\FilesController;
+use App\Http\Controllers\Frontend\VisionsController;
 use App\Http\Controllers\Frontend\WeatherController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\AnalyticsController;
 use Miroc\LaravelAdminer\AdminerAutologinController;
 
 Route::any('/adminer', AdminerAutologinController::class . '@index');
@@ -55,7 +56,8 @@ Route::get('/', IndexController::class . '@index');
 Route::get('/test', IndexController::class . '@test');
 Route::get('/translation', IndexController::class . '@translation');
 
-Route::get('/download', DownloadController::class . '@index');
+Route::get('/analytics', AnalyticsController::class . '@index');
+Route::post('/analytics', AnalyticsController::class . '@store');
 
 Route::get('/import', IndexController::class . '@importIndex');
 Route::post('/import', IndexController::class . '@importStore');
@@ -104,4 +106,5 @@ Route::group(['prefix' => 'frontend'], function () {
     Route::resource('phrases', PhrasesController::class);
     Route::resource('masteries', MasteriesController::class);
     Route::resource('food', FoodController::class);
+    Route::resource('visions', VisionsController::class);
 });

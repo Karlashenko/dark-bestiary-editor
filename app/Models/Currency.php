@@ -18,6 +18,7 @@ class Currency extends Model implements Presentable
 {
     public const TYPES = [
         'Gold',
+        'VisionFragment',
     ];
 
     /**

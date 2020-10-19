@@ -67,6 +67,58 @@
                                 </tr>
 
                                 <tr>
+                                    <td>Rarity</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <selectpicker v-model="selected.rarity_id"
+                                                          :options="rarities"
+                                                          :valuecallback="(rarity) => rarity.id"
+                                                          :labelcallback="(rarity) => rarity.type">
+                                            </selectpicker>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Item Categories</td>
+                                    <td>
+                                        <table class="table-inner">
+                                            <tr v-for="itemCategory in selected.item_categories">
+                                                <td style="width: 80%">
+                                                    <selectpicker v-model="itemCategory.pivot.item_category_id"
+                                                                  :options="itemCategories"
+                                                                  :valuecallback="(element) => element.id"
+                                                                  :labelcallback="(element) => element.name_i18n.en">
+                                                    </selectpicker>
+                                                </td>
+
+                                                <td style="padding-left: 4px; vertical-align: top; white-space: nowrap;">
+                                                    <button class="btn btn-default" @click="itemCategoryMoveUp(selected, itemCategory)">
+                                                        <span class="glyphicon glyphicon-arrow-up"></span>
+                                                    </button>
+
+                                                    <button class="btn btn-default" @click="itemCategoryMoveDown(selected, itemCategory)">
+                                                        <span class="glyphicon glyphicon-arrow-down"></span>
+                                                    </button>
+
+                                                    <button class="btn btn-default" @click="itemCategoryRemove(selected, itemCategory)">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr style="height: 50px;">
+                                                <td colspan="3">
+                                                    <button class="btn btn-default" style="width: 128px; height: 32px;" @click="itemCategoryAdd(selected)">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <td>Period</td>
                                     <td>
                                         <div class="form-group">
@@ -1314,6 +1366,49 @@
 
                 item.validators[index] = item.validators[index + 1];
                 item.validators[index + 1] = validator;
+
+                this.$forceUpdate();
+            },
+
+            itemCategoryAdd: function (behaviour) {
+                if (behaviour.item_categories === undefined) {
+                    Object.assign(behaviour, {item_categories: []});
+                }
+
+                behaviour.item_categories.push({
+                    pivot: {
+                        item_category_id: this.itemCategories[0] ? this.itemCategories[0].id : undefined,
+                    }
+                });
+            },
+
+            itemCategoryRemove: function (behaviour, itemCategory) {
+                let index = behaviour.item_categories.indexOf(itemCategory);
+                behaviour.item_categories.splice(index, 1);
+            },
+
+            itemCategoryMoveUp: function (behaviour, itemCategory) {
+                let index = behaviour.item_categories.indexOf(itemCategory);
+
+                if (index === -1 || index === 0) {
+                    return;
+                }
+
+                behaviour.item_categories[index] = behaviour.item_categories[index - 1];
+                behaviour.item_categories[index - 1] = itemCategory;
+
+                this.$forceUpdate();
+            },
+
+            itemCategoryMoveDown: function (behaviour, itemCategory) {
+                let index = behaviour.item_categories.indexOf(itemCategory);
+
+                if (index === -1 || index === behaviour.item_categories.length) {
+                    return;
+                }
+
+                behaviour.item_categories[index] = behaviour.item_categories[index + 1];
+                behaviour.item_categories[index + 1] = itemCategory;
 
                 this.$forceUpdate();
             },

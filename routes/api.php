@@ -39,6 +39,7 @@ Route::get('relics', ApiController::class . '@relics');
 Route::get('dialogues', ApiController::class . '@dialogues');
 Route::get('phrases', ApiController::class . '@phrases');
 Route::get('masteries', ApiController::class . '@masteries');
+Route::get('visions', ApiController::class . '@visions');
 Route::get('food', ApiController::class . '@food');
 Route::get('i18n', ApiController::class . '@i18n');
 Route::get('i18n/ru', ApiController::class . '@i18nRu');

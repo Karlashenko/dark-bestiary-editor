@@ -31,6 +31,8 @@ class GenerateItemPrices extends Command
     private const TYPE_ID_CURRENCY       = 36;
     private const TYPE_ID_RELIC          = 62;
     private const TYPE_ID_ENCHANTMENT    = 65;
+    private const TYPE_ID_SKILLBOOK      = 68;
+    private const TYPE_ID_POTION         = 69;
 
     private const RARITY_ID_JUNK         = 1;
     private const RARITY_ID_COMMON       = 2;
@@ -66,7 +68,7 @@ class GenerateItemPrices extends Command
     {
         switch ($item->rarity_id)
         {
-            case self::RARITY_ID_JUNK: return 0.05;
+            case self::RARITY_ID_JUNK: return 0.5;
             case self::RARITY_ID_COMMON: return 1;
             case self::RARITY_ID_MAGIC: return 3;
             case self::RARITY_ID_RARE: return 4;
@@ -78,8 +80,7 @@ class GenerateItemPrices extends Command
 
     private function GetTypeMultiplier(Item $item): float
     {
-        if (ItemCategory::find(self::CATEGORY_ID_TWO_HANDED)->types->contains(function (ItemType $type) use ($item) {
-            return $type->id === $item->type_id; })) {
+        if (ItemCategory::find(self::CATEGORY_ID_TWO_HANDED)->types->contains(function (ItemType $type) use ($item) { return $type->id === $item->type_id; })) {
             return 2;
         }
 
@@ -87,9 +88,14 @@ class GenerateItemPrices extends Command
             return 2;
         }
 
-        if ($item->type_id === self::TYPE_ID_ACCESSORY || $item->type_id === self::TYPE_ID_RING ||
-            $item->type_id === self::TYPE_ID_AMULET) {
-            return 3;
+        if ($item->type_id === self::TYPE_ID_RING ||
+            $item->type_id === self::TYPE_ID_AMULET)
+        {
+            return 1.5;
+        }
+
+        if ($item->type_id === self::TYPE_ID_ACCESSORY) {
+            return 2.5;
         }
 
         if ($item->type_id === self::TYPE_ID_RELIC) {
@@ -98,6 +104,14 @@ class GenerateItemPrices extends Command
 
         if ($item->type_id === self::TYPE_ID_ENCHANTMENT) {
             return 5;
+        }
+
+        if ($item->type_id === self::TYPE_ID_POTION) {
+            return 8;
+        }
+
+        if ($item->type_id === self::TYPE_ID_SKILLBOOK) {
+            return 4.5;
         }
 
         if ($item->consume_loot_id > 0) {

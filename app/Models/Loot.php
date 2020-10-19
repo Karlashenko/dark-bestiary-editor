@@ -50,6 +50,7 @@ class Loot extends Model implements Presentable
                 $item->is_unique = (bool) \array_get($data, 'is_unique');
                 $item->is_guaranteed = (bool) \array_get($data, 'is_guaranteed');
                 $item->is_enabled = (bool) \array_get($data, 'is_enabled');
+                $item->is_ignore_level = (bool) \array_get($data, 'is_ignore_level');
                 $item->save();
             }
 

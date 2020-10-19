@@ -16,16 +16,12 @@ use App\Models\Dialogue;
 use App\Models\DialogueAction;
 use App\Models\Effect;
 use App\Models\Encounter;
-use App\Models\Episode;
 use App\Models\Food;
 use App\Models\Item;
-use App\Models\ItemCategory;
 use App\Models\ItemRarity;
 use App\Models\ItemType;
 use App\Models\LootItem;
 use App\Models\Missile;
-use App\Models\Phrase;
-use App\Models\Property;
 use App\Models\Recipe;
 use App\Models\Reward;
 use App\Models\Scenario;
@@ -48,7 +44,7 @@ class Library
      */
     public static function get(): array
     {
-        $library = [
+        return [
             'moverTypes'                => Missile::MOVER_TYPES,
             'lootItemTypes'             => LootItem::TYPES,
             'attachmentPoints'          => Attachment::POINTS,
@@ -105,8 +101,6 @@ class Library
             'equipmentMeshes'           => self::getEquipmentMeshes(),
             'animations'                => self::getAnimations(),
         ];
-
-        return $library;
     }
 
     public static function getSides(): array
@@ -164,6 +158,7 @@ class Library
             'block',
             'drink',
             'slam',
+            'horn',
             'mutilate',
             'double_shot',
             'dash_start',

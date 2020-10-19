@@ -23,6 +23,7 @@ class Achievement extends Model implements Presentable
         'CollectAchievement',
         'CompleteScenarioAchievement',
         'LevelupAchievement',
+        'CompleteVisionsAchievement',
     ];
 
     /**

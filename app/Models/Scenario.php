@@ -42,6 +42,7 @@ class Scenario extends Model implements Presentable
             $scenario->monster_level_min = (int) $request->monster_level_min;
             $scenario->monster_level_max = (int) $request->monster_level_max;
             $scenario->type = (string) $request->type;
+            $scenario->label = (string) $request->label;
             $scenario->name_i18n_id = $request->name_i18n_id;
             $scenario->description_i18n_id = $request->description_i18n_id;
             $scenario->commentary_i18n_id = $request->commentary_i18n_id;

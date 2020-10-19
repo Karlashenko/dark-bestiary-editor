@@ -435,10 +435,10 @@
                                 <tr><td colspan="3"><hr></td></tr>
 
                                 <tr>
-                                    <td>Unlock Relic</td>
+                                    <td>Learn Skill</td>
                                     <td>
                                         <div class="form-group">
-                                            <relic-field v-model="selected.unlock_relic_id" :relics="relics"></relic-field>
+                                            <skill-field v-model="selected.learn_skill_id" :skills="skills"></skill-field>
                                         </div>
                                     </td>
                                 </tr>
@@ -448,6 +448,15 @@
                                     <td>
                                         <div class="form-group">
                                             <skill-field v-model="selected.unlock_skill_id" :skills="skills"></skill-field>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Unlock Relic</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <relic-field v-model="selected.unlock_relic_id" :relics="relics"></relic-field>
                                         </div>
                                     </td>
                                 </tr>

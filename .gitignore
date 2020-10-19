@@ -1,13 +1,13 @@
 /node_modules
 /public/hot
 /public/storage
-/public/data
-/public/data.zip
 /storage/*.key
 /vendor
 /.idea
 /.vagrant
 /.DS_Store
+/public/resources
+/database/migrations
 Homestead.json
 Homestead.yaml
 composer.phar
@@ -17,4 +17,3 @@ yarn-error.log
 .phpstorm.meta.php
 _ide_helper_models.php
 _ide_helper.php
-bash.exe.stackdump

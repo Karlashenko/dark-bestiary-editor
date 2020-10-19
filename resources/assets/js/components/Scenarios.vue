@@ -26,7 +26,7 @@
 
         <div class="row">
             <div class="col-md-4">
-                <list :elements="scenarios" :fields="['id', 'index', 'name_i18n.en', 'type', 'monster_level_min', 'monster_level_max']" v-model="selected"></list>
+                <list :elements="scenarios" :fields="['id', 'index', 'name_i18n.en|label', 'type', 'monster_level_min', 'monster_level_max']" v-model="selected"></list>
             </div>
 
             <div class="col-md-8">
@@ -77,6 +77,15 @@
                                 <td>
                                     <div class="form-group">
                                         <input type="number" class="form-control" v-model="selected.monster_level_max">
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Label</td>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" v-model="selected.label"/>
                                     </div>
                                 </td>
                             </tr>

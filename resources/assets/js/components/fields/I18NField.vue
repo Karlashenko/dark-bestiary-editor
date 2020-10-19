@@ -18,7 +18,7 @@
                                 <p style="text-align: left; font-weight: bold;">Translation</p>
                                 <div>
                                     <selectpicker v-model="selected"
-                                                  :options="translations"
+                                                  :options="translationsArray"
                                                   :selectcallback="(one, another) => one.id === another.id"
                                                   :labelcallback="(translation) => (translation.fresh ? '* ' : '') + translation.key">
                                     </selectpicker>
@@ -181,6 +181,7 @@
                 behaviours: [],
                 window: window,
                 translations: new Map(),
+                translationsArray: [],
             };
         },
 
@@ -206,18 +207,16 @@
                 this.reload(() => {
                     this.modalShow();
 
-                    let length = this.translations.length;
-
                     let translation = {
-                        key: "translation_" + length,
+                        key: "translation_" + this.translationsArray.length,
                         fresh: true,
-                        variables: [],
-                        id: length + 100000
+                        variables: []
                     };
 
                     this.translations[translation.id + "_key"] = translation;
+                    this.translationsArray.push(translation);
                     this.selected = translation;
-                })
+                });
             },
 
             edit: function () {
@@ -273,6 +272,7 @@
 
                 window.axios.get('/frontend/i18n').then(response => {
                     this.translations = new Map();
+                    this.translationsArray = response.data;
 
                     for (let key in response.data) {
                         this.translations[response.data[key].id + "_key"] = response.data[key];
@@ -294,6 +294,9 @@
                 if (translation.fresh) {
                     window.axios.post('/frontend/i18n', translation).then(response => {
                         this.translations[response.data.id + "_key"] = response.data;
+
+                        this.translationsArray.push(response.data);
+
                         this.selected = this.translations[response.data.id + "_key"];
 
                         this.$emit('input', this.selected.id);
@@ -305,6 +308,10 @@
 
                 window.axios.put('/frontend/i18n/' + translation.id, translation).then(response => {
                     this.translations[response.data.id + "_key"] = response.data;
+
+                    let index = this.translationsArray.findIndex(t => t.id === response.data.id);
+                    this.translationsArray[index] = response.data;
+
                     this.selected = this.translations[response.data.id + "_key"];
 
                     this.$emit('input', this.selected.id);

@@ -161,6 +161,11 @@ let routes = [
         props: true
     },
     {
+        path: "/visions/:id?",
+        component: require("./components/Visions.vue"),
+        props: true
+    },
+    {
         path: "/scenes/:id?",
         component: require("./components/Scenes.vue"),
         props: true

@@ -51,6 +51,7 @@
                                                 <th style="width: 10%">Enabled</th>
                                                 <th style="width: 10%">Unique</th>
                                                 <th style="width: 10%">Guaranteed</th>
+                                                <th style="width: 10%">Ignore Level</th>
                                                 <th></th>
                                             </tr>
                                             </thead>
@@ -120,6 +121,12 @@
                                                 <td style="text-align: center;">
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input" v-model="item.is_guaranteed">
+                                                    </div>
+                                                </td>
+
+                                                <td style="text-align: center;">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" v-model="item.is_ignore_level">
                                                     </div>
                                                 </td>
 

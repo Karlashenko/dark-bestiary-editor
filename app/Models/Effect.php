@@ -360,6 +360,7 @@ class Effect extends Model implements Presentable
             $effect->search_perimeter_limit = (int) $request->search_perimeter_limit;
             $effect->search_perimeter_pick_random_side = (bool) $request->search_perimeter_pick_random_side;
 
+            $effect->search_random_points_include_occupied = (bool) $request->search_random_points_include_occupied;
             $effect->search_random_points_range_min = (int) $request->search_random_points_range_min;
             $effect->search_random_points_range_max = (int) $request->search_random_points_range_max;
             $effect->search_random_points_limit = (int) $request->search_random_points_limit;
@@ -720,6 +721,7 @@ class Effect extends Model implements Presentable
             $data['RangeMax'] = (int) $this->search_random_points_range_max;
             $data['Limit'] = (int) $this->search_random_points_limit;
             $data['EffectId'] = (int) $this->search_random_points_effect_id;
+            $data['IncludeOccupied'] = (bool) $this->search_random_points_include_occupied;
         }
 
         if ($this->type === self::TYPE_APPLY_BEHAVIOUR) {

@@ -1323,6 +1323,15 @@
                 </tr>
 
                 <tr>
+                    <td>Include Occupied</td>
+                    <td>
+                        <div class="form-group">
+                            <input type="checkbox" v-model="selected.search_random_points_include_occupied">
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
                     <td>Effect</td>
                     <td>
                         <div class="form-group">

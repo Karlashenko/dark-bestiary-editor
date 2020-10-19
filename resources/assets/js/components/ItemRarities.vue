@@ -43,12 +43,7 @@
                                     <td>Type</td>
                                     <td>
                                         <div class="form-group">
-                                            <select class="form-control selectpicker" data-live-search="true" v-model="selected.type">
-                                                <option :value="null">NULL</option>
-                                                <option v-for="itemRarityType in window.library.itemRarityTypes" :value="itemRarityType" :selected="itemRarityType === selected.type">
-                                                    {{ itemRarityType }}
-                                                </option>
-                                            </select>
+                                            <input type="text" class="form-control" v-model="selected.type">
                                         </div>
                                     </td>
                                 </tr>

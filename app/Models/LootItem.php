@@ -68,6 +68,7 @@ class LootItem extends Model implements Presentable
             'Enabled'     => (bool) $this->is_enabled,
             'Unique'      => (bool) $this->is_unique,
             'Guaranteed'  => (bool) $this->is_guaranteed,
+            'IgnoreLevel' => (bool) $this->is_ignore_level,
         ];
     }
 

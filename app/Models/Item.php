@@ -33,6 +33,8 @@ class Item extends Model implements Presentable
         'UniqueEquipped',
         'QuestReward',
         'Illusory',
+        'CampaignOnly',
+        'VisionsOnly',
     ];
 
     public const SLOT_TYPES = [
@@ -75,8 +77,9 @@ class Item extends Model implements Presentable
             $item->consume_effect_id = $request->consume_effect_id;
             $item->consume_sound = (string) $request->consume_sound;
             $item->consume_cooldown = (int) $request->consume_cooldown;
-            $item->unlock_relic_id = $request->unlock_relic_id;
+            $item->learn_skill_id = $request->learn_skill_id;
             $item->unlock_skill_id = $request->unlock_skill_id;
+            $item->unlock_relic_id = $request->unlock_relic_id;
             $item->unlock_scenario_id = $request->unlock_scenario_id;
             $item->enchantment_behaviour_id = $request->enchantment_behaviour_id;
             $item->enchantment_item_category_id = $request->enchantment_item_category_id;
@@ -415,6 +418,7 @@ class Item extends Model implements Presentable
             'ConsumeCooldown'           => (int) $this->consume_cooldown,
             'ConsumeSound'              => (string) $this->consume_sound,
             'BookTextKey'               => (string) $this->bookTextI18n->key,
+            'LearnSkillId'              => (int) $this->learn_skill_id,
             'UnlockSkillId'             => (int) $this->unlock_skill_id,
             'UnlockRelicId'             => (int) $this->unlock_relic_id,
             'UnlockScenarioId'          => (int) $this->unlock_scenario_id,
